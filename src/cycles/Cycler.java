@@ -16,12 +16,8 @@ public class Cycler {
 		
 		b_arr = new boolean[arr.length];
 		i_arr = arr;
-		
-		for (Boolean boolean1 : b_arr) {
-			boolean1 = false;
-		}
-		int cycles = 0;
 
+		int cycles = 0;
 		
 		while(findCycle(i_arr, b_arr)){
 			cycles++;
@@ -38,7 +34,7 @@ public class Cycler {
 				pointer = i;
 				do{
 					b_arr[pointer] = true;
-					pointer = i_arr[pointer];					
+					pointer = i_arr[pointer];		
 				}while(!b_arr[pointer]);
 				return true;
 			}
