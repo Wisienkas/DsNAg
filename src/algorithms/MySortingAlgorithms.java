@@ -10,6 +10,11 @@ public class MySortingAlgorithms {
 		System.out.println(makeString(array));
 	}
 	
+	/**
+	 * Will give you a String which includes all the elements of the array
+	 * @param array the array to be added to the string
+	 * @return string which includes the array
+	 */
 	public static String makeString(Integer[] array){
 		String output = "array: {";
 		if(array == null){
@@ -23,6 +28,11 @@ public class MySortingAlgorithms {
 		return output;
 	}
 	
+	/**
+	 * InsertionSort Algorithm
+	 * @param array to be sorted
+	 * @return sorted array
+	 */
 	public static Integer[] insertionSort(Integer[] array) {
 
 		for (int i = 1; i < array.length; i++) {
@@ -37,19 +47,33 @@ public class MySortingAlgorithms {
 		return array;
 	}
 
+	/**
+	 * MergeSort algorithm
+	 * @param array to be sorted
+	 * @return array sorted
+	 */
 	public static Integer[] mergeSort(Integer[] array) {
 		if(array.length <= 1){
 			return array.length == 1 ? new Integer[]{array[0]} : null;
 		}
 		Integer[] array1 = getSubArray(array, 0, array.length / 2);
-		Integer[] array2 = getSubArray(array, (array.length / 2),
+		Integer[] array2 = getSubArray(array, array.length / 2,
 				array.length);
+		System.out.println("new roundup");
+		System.out.println(makeString(array1));
+		System.out.println(makeString(array2));
 		array1 = mergeSort(array1);
 		array2 = mergeSort(array2);
 		
 		return merge(array1, array2);
 	}
 
+	/**
+	 * Will merge 2 arrays in a sorted manor;
+	 * @param array1
+	 * @param array2
+	 * @return sorted array
+	 */
 	private static Integer[] merge(Integer[] array1, Integer[] array2) {
 		if((array1 == null || array2 == null)){
 			return array1 == null ? array2 : array1;
@@ -78,6 +102,13 @@ public class MySortingAlgorithms {
 	}
 
 
+	/**
+	 * Will retrive a subArray from a given array, starting from the given start to the given end
+	 * @param array to get subarray from
+	 * @param start index
+	 * @param end index of array + 1;
+	 * @return
+	 */
 	private static Integer[] getSubArray(Integer[] array, int start, int end) {
 		if(start > end){
 			return new Integer[0];

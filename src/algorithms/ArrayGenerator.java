@@ -9,6 +9,7 @@ public class ArrayGenerator {
 	 * @param lowest is the lowest number allowed
 	 * @param highest is the highest number allowed
 	 * @return random int array
+	 * @throws Exception if params violates the conditions
 	 */
 	public static int[] makeRandomArray(int size, int lowest, int highest) throws Exception{
 		if(size < 0 || lowest > highest || lowest < 0 || highest < 0){
@@ -21,6 +22,13 @@ public class ArrayGenerator {
 		return result;
 	}
 	
+	/**
+	 * Will make a sorted array of n size based on countUp for either 0,1,2,3,,,,n or n,n-1,n-2,,,,,,3,2,1
+	 * @param size size of the array
+	 * @param countUp boolean to determine sorting
+	 * @return sorted array
+	 * @throws Exception if size less than 0
+	 */
 	public static int[] makeSortedArray(int size, boolean countUp) throws Exception{
 		if(size < 0){
 			throw new Exception("Size too short");
