@@ -145,5 +145,7 @@ public class MySortingAlgorithms {
 		}
 		return result;
 	}
+	
+//	public static Number[] heapSort(Number[] array, )
 
 }

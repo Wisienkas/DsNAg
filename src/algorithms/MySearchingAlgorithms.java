@@ -7,40 +7,60 @@ public class MySearchingAlgorithms {
 		Integer[] arr = new Integer[]{123,6,234,634,5,431,23,723,62,234,2};
 		arr = (Integer[]) MySortingAlgorithms.insertionSort(arr);
 		System.out.println(MySortingAlgorithms.makeString(arr));
-		System.out.println("Index of value: " + binarySearch(arr, 723));
+		System.out.println("Index of value: " + binarySearch(arr, 431));
 	}
 	
-	public static Integer binarySearch(Integer[] array, Integer v){
+	/**
+	 * Will Search array binary in precision of long, Only whole numbers
+	 * @param array of type {@link Number}
+	 * @param v of type {@link Number}
+	 * @return int index number of value in array if found, else null
+	 */
+	public static Number binarySearch(Number[] array, Number v){
 		
 		int modifier = array.length / 2;
 		int index = modifier + 1;
-		System.out.println("Index: " + index);
-		if(array[index] == v){
+		if(array[index].longValue() == v.longValue()){
 			return index;
 		}
-		while(!array[index].equals(v)){
-			Integer focus = array[index];
-			System.out.println("value:" + focus + " ? " + v);
-			System.out.println((focus.equals(v)));
+		int overcount = 2;
+		while(array[index].longValue() != v.longValue()){
+			if(overcount == 0){
+				break;
+			}
+			Long focus = array[index].longValue();
 			modifier /= 2;
+			if(modifier < 1){
+				overcount--;
+			}
 			if(focus.equals(v)){
-				System.out.println("was equal");
 				return index;
-			}else if(focus.compareTo(v) < 0){
-				System.out.println("counting Up by " + modifier);
+			}else if(focus.compareTo(v.longValue()) < 0){
 				index += modifier < 1 ? 1 : modifier;
-				System.out.println("new Index: " + index);
-			}else if(focus.compareTo(v) > 0){
-				System.out.println("counting Down by " + modifier);
+			}else if(focus.compareTo(v.longValue()) > 0){
 				index -= modifier < 1 ? 1 : modifier;
-				System.out.println("new Index: " + index);
 			}
 			if(index < 0 || index > array.length -1){
 				return null;
 			}
 		}
-		return array[index].equals(v) ? index : null; 
+		return array[index].longValue() == v.longValue() ? index : null; 
+	}
+	
+	/**
+	 * Will search array of Number in precision of Long, Only whole numbers ! :O
+	 * @param array of type {@link Number}
+	 * @param v of type {@link Number}
+	 * @return int index value if found value, else null
+	 */
+	public Number liniarSearch(Number[] array, Number v){
 		
+		for(int i = 0; i < array.length; i++){
+			if(array[i].longValue() == v.longValue()){
+				return i;
+			}
+		}
+		return null;
 	}
 	
 }
