@@ -1,4 +1,4 @@
-package weeklies.week7;
+package algorithms;
 
 
 public class MySortingAlgorithms {
