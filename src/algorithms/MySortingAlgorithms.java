@@ -4,10 +4,23 @@ package algorithms;
 public class MySortingAlgorithms {
 
 	public static void main(String[] args) {
-		Integer[] array = new Integer[]{26,71,2,86,10,5,75,1,34,8,23,52,71,92};
-		System.out.println(makeString(array));
+		//Number[] array = new Integer[]{26,71,2,86,10,5,75,1,34,8,23,52,71,92};
+		Number[] array = new Number[0];
+		long time = 0;
+		long time1 = 0;
+		try {
+			time = System.nanoTime();
+			array = ArrayGenerator.makeRandomArray(10000000, 0, 109900000);
+//			array = ArrayGenerator.makeSortedArray(100000, true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		time1 = System.nanoTime();
 		array = mergeSort(array);
-		System.out.println(makeString(array));
+//		array = insertionSort(array);
+		time1 = System.nanoTime() -time1;
+		System.out.println("array generator time: " + time);
+		System.out.println("mergesort time: " + time1);
 	}
 	
 	/**
@@ -15,13 +28,13 @@ public class MySortingAlgorithms {
 	 * @param array the array to be added to the string
 	 * @return string which includes the array
 	 */
-	public static String makeString(Integer[] array){
+	public static String makeString(Number[] array){
 		String output = "array: {";
 		if(array == null){
 			output += "null";
 		}else{
-			for (Integer integer : array) {
-				output += integer + ", ";
+			for (Number n : array) {
+				output += n.longValue() + ", ";
 			}
 		}
 		output += "}";
@@ -33,12 +46,12 @@ public class MySortingAlgorithms {
 	 * @param array to be sorted
 	 * @return sorted array
 	 */
-	public static Integer[] insertionSort(Integer[] array) {
+	public static Number[] insertionSort(Number[] array) {
 
 		for (int i = 1; i < array.length; i++) {
 			int j = i;
-			while (j > 0 && array[j - 1] > array[j]) {
-				int holder = array[j - 1];
+			while (j > 0 && array[j - 1].doubleValue() > array[j].doubleValue()) {
+				Number holder = array[j - 1];
 				array[j - 1] = array[j];
 				array[j] = holder;
 				j--;
@@ -52,50 +65,63 @@ public class MySortingAlgorithms {
 	 * @param array to be sorted
 	 * @return array sorted
 	 */
-	public static Integer[] mergeSort(Integer[] array) {
+	public static Number[] mergeSort(Number[] array) {
 		if(array.length <= 1){
-			return array.length == 1 ? new Integer[]{array[0]} : null;
+			return insertionSort(array);
 		}
-		Integer[] array1 = getSubArray(array, 0, array.length / 2);
-		Integer[] array2 = getSubArray(array, array.length / 2,
+
+		Number[] array1 = getSubArray(array, 0, array.length / 2);
+		Number[] array2 = getSubArray(array, array.length / 2,
 				array.length);
-		System.out.println("new roundup");
-		System.out.println(makeString(array1));
-		System.out.println(makeString(array2));
 		array1 = mergeSort(array1);
 		array2 = mergeSort(array2);
 		
 		return merge(array1, array2);
 	}
-
+	
+	/**
+	 * checks if n1 is lesser than or equal n2
+	 * @param n1
+	 * @param n2
+	 * @return true if n1 <= n2 else false
+	 */
+	private static boolean CompareNumbers(Number n1, Number n2){
+		Long l1 = n1.longValue();
+		Long l2 = n2.longValue();
+		if(l1 != l2){
+			return l1 < l2 ? true : false;
+		}
+		return n1.doubleValue() <= n2.doubleValue() ? true : false;
+	}
+	
 	/**
 	 * Will merge 2 arrays in a sorted manor;
 	 * @param array1
 	 * @param array2
 	 * @return sorted array
 	 */
-	private static Integer[] merge(Integer[] array1, Integer[] array2) {
-		if((array1 == null || array2 == null)){
-			return array1 == null ? array2 : array1;
-		}else if(array1.length == 0 || array2.length == 0){
-			return array1.length == 0 ? array2 : array1;
-		}
-		Integer[] result = new Integer[array1.length + array2.length];
+	private static Number[] merge(Number[] array1, Number[] array2) {
+		Number[] result = new Number[array1.length + array2.length];
 		int i1 = 0;
 		int i2 = 0;
-		for (int k = 0; k < result.length; k++) {
-			if(array1.length <= i1){
-				result[k] = array2[i2];
-				i2++;
-			}else if(array2.length <= i2){
-				result[k] = array1[i1];
-				i1++;
-			}else if(array1[i1] < array2[i2]){
+		int endValue = 0;
+		for (int k = 0; k < result.length && array1.length <= i1 && array2.length <= i2; k++) {
+			if(CompareNumbers(array1[i1], array2[i2])){
 				result[k] = array1[i1];
 				i1++;
 			}else{
 				result[k] = array2[i2];
 				i2++;
+			}
+			endValue = k;
+		}
+		if(endValue < result.length){
+			if(array1.length <= i1){
+				result[endValue] = array2[i2];
+				i2++;
+			}else if(array2.length <= i2){
+				result[endValue] = array1[i1];
+				i1++;
 			}
 		}
 		return result;
@@ -109,11 +135,11 @@ public class MySortingAlgorithms {
 	 * @param end index of array + 1;
 	 * @return
 	 */
-	private static Integer[] getSubArray(Integer[] array, int start, int end) {
+	private static Number[] getSubArray(Number[] array, int start, int end) {
 		if(start > end){
-			return new Integer[0];
+			return new Number[0];
 		}
-		Integer[] result = new Integer[end - start];
+		Number[] result = new Number[end - start];
 		for (int i = 0; i < result.length; i++) {
 			result[i] = array[start + i];
 		}

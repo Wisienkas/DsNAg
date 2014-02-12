@@ -11,11 +11,11 @@ public class ArrayGenerator {
 	 * @return random int array
 	 * @throws Exception if params violates the conditions
 	 */
-	public static int[] makeRandomArray(int size, int lowest, int highest) throws Exception{
+	public static Integer[] makeRandomArray(int size, int lowest, int highest) throws Exception{
 		if(size < 0 || lowest > highest || lowest < 0 || highest < 0){
 			throw new Exception("Negative params or lowest higher than highest");
 		}
-		int[] result = new int[size];
+		Integer[] result = new Integer[size];
 		for (int i = 0; i < result.length; i++) {
 			result[i] = (int) ((Math.random() * (highest - lowest)) + lowest);
 		}
@@ -29,11 +29,11 @@ public class ArrayGenerator {
 	 * @return sorted array
 	 * @throws Exception if size less than 0
 	 */
-	public static int[] makeSortedArray(int size, boolean countUp) throws Exception{
+	public static Integer[] makeSortedArray(int size, boolean countUp) throws Exception{
 		if(size < 0){
 			throw new Exception("Size too short");
 		}
-		int[] result = new int[size];
+		Integer[] result = new Integer[size];
 		for (int i = 0; i < result.length; i++) {
 			result[i] = countUp ? i : result.length - i;
 		}

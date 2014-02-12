@@ -12,6 +12,16 @@ public class Cycler {
 	private static boolean[] b_arr;
 	private static int[] i_arr;
 	
+	/**
+	 * Cost is cycles * n
+	 * 
+	 * ------  Performance ------
+	 * worst case: cycles = n => n² 
+	 * best case: cycles = 1 => n
+	 * 
+	 * @param arr
+	 * @return
+	 */
 	public static int getCycles(int[] arr){
 		
 		b_arr = new boolean[arr.length];
@@ -22,7 +32,6 @@ public class Cycler {
 		while(findCycle(i_arr, b_arr)){
 			cycles++;
 		}
-		
 		return cycles;
 	}
 
@@ -39,7 +48,6 @@ public class Cycler {
 				return true;
 			}
 		}
-		
 		return false;
 	}
 	
