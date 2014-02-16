@@ -167,7 +167,7 @@ public class MySortingAlgorithms {
 		A[i] = A[r];
 		A[r] = holder;
 		
-		return allSame ? ((A[p] + A[r]) / 2) : (i + 1);
+		return allSame ? ((p + r) / 2) : (i + 1);
 	}
 	
 //	public static Number[] heapSort(Number[] array, )
