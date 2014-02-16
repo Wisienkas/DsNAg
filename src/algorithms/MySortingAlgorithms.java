@@ -146,6 +146,30 @@ public class MySortingAlgorithms {
 		return result;
 	}
 	
+	private static int partion(int[] A, int p, int r){
+		int x = A[r];
+		int i = p - 1;
+		int holder;
+		boolean allSame = true;
+		for(int j = p; j < r; j++){
+			if(allSame){
+				if(A[j] != A[r])
+					allSame = false;
+			}
+			if(A[j] <= x){
+				i++;
+				holder = A[i];
+				A[i] = A[j];
+				A[j] = holder;
+			}
+		}
+		holder = A[i];
+		A[i] = A[r];
+		A[r] = holder;
+		
+		return allSame ? ((A[p] + A[r]) / 2) : (i + 1);
+	}
+	
 //	public static Number[] heapSort(Number[] array, )
 
 }
