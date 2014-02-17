@@ -67,7 +67,7 @@ public class MySortingAlgorithms {
 	 */
 	public static Number[] mergeSort(Number[] array) {
 		if(array.length <= 1){
-			return insertionSort(array);
+			return array;
 		}
 
 		Number[] array1 = getSubArray(array, 0, array.length / 2);
@@ -105,7 +105,7 @@ public class MySortingAlgorithms {
 		int i1 = 0;
 		int i2 = 0;
 		int endValue = 0;
-		for (int k = 0; k < result.length && array1.length <= i1 && array2.length <= i2; k++) {
+		for (int k = 0; k < result.length && array1.length > i1 && array2.length > i2; k++) {
 			if(CompareNumbers(array1[i1], array2[i2])){
 				result[k] = array1[i1];
 				i1++;
@@ -117,11 +117,15 @@ public class MySortingAlgorithms {
 		}
 		if(endValue < result.length){
 			if(array1.length <= i1){
-				result[endValue] = array2[i2];
-				i2++;
+				for(int j = endValue + 1; j < result.length; j++){
+					result[j] = array2[i2];
+					i2++;
+				}
 			}else if(array2.length <= i2){
-				result[endValue] = array1[i1];
-				i1++;
+				for(int j = endValue +1; j < result.length; j++){
+					result[j] = array1[i1];
+					i1++;
+				}
 			}
 		}
 		return result;
@@ -143,6 +147,72 @@ public class MySortingAlgorithms {
 		for (int i = 0; i < result.length; i++) {
 			result[i] = array[start + i];
 		}
+		return result;
+	}
+	
+	private static int partion(int[] A, int p, int r){
+		int x = A[r];
+		int i = p - 1;
+		int holder;
+		boolean allSame = true;
+		for(int j = p; j < r; j++){
+			if(allSame){
+				if(A[j] != A[r])
+					allSame = false;
+			}
+			if(A[j] <= x){
+				i++;
+				holder = A[i];
+				A[i] = A[j];
+				A[j] = holder;
+			}
+		}
+		holder = A[i + 1];
+		A[i + 1] = A[r];
+		A[r] = holder;
+		
+		return allSame ? ((p + r) / 2) : (i + 1);
+	}
+	
+	public static class IndexHolder{
+		public int q = 0;
+		public int t = 0;
+	}
+	
+	private static IndexHolder partion2(int[] A, int p, int r){
+		int x = A[r];
+		int i = p - 1;
+		int t = i;
+		int holder;
+		boolean allSame = true;
+		for(int j = p; j < r; j++){
+			if(allSame){
+				if(A[j] != A[r])
+					allSame = false;
+			}
+			if(A[j] < x){
+				i++;
+				t++;
+				holder = A[i];
+				A[i] = A[j];
+				A[j] = holder;
+				holder = A[t];
+				A[t] = A[j];
+				A[j] = A[t];
+			}else if(A[j] == x){
+				t++;
+				holder = A[t];
+				A[t] = A[j];
+			}
+		}
+		holder = A[t +1];
+		A[t + 1] = A[r];
+		A[r] = holder;
+		
+		IndexHolder result = new IndexHolder();
+		result.q = i + 1;
+		result.t = t + 1;
+		
 		return result;
 	}
 	
