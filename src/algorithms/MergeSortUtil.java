@@ -6,7 +6,7 @@ public class MergeSortUtil {
 	public static void main(String[] args) {
 		Number[] A = new Number[0];
 		try {
-			A = ArrayGenerator.makeRandomArray(5, 0, 10);
+			A = ArrayGenerator.makeRandomArray(50, 0, 1000);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -27,19 +27,15 @@ public class MergeSortUtil {
 	}
 	
 	public static void mergeSort(Number[] A, int start, int end){
-		System.out.println("start: " + start + "\tend: " + end);
-		int split = ((end - start) / 2) + start;
-		if(end - start <= 1)
+		if(end - start < 1)
 			return;
-		
+		int split = ((end - start) / 2) + start;
 		mergeSort(A, start, split);
-		mergeSort(A, split, end);
+		mergeSort(A, split + 1, end);
 		merge(A, start, end, split);
 	}
 	
 	public static void merge(Number[] A, int start, int end, int split){
-		
-		printArray(A);
 		Number[] L = new Number[(split + 1) - start];
 		Number[] R = new Number[end - split];
 		
@@ -49,7 +45,7 @@ public class MergeSortUtil {
 		for(int i = 0; i < R.length; i++){
 			R[i] = A[split + 1 + i];
 		}
-		
+
 		int ri = 0;
 		int li = 0;
 		
@@ -68,7 +64,6 @@ public class MergeSortUtil {
 					A[i] = R[ri];
 					ri++;
 				}
-				printArray(A);
 				return;
 			}
 			if(ri == R.length){
@@ -77,12 +72,9 @@ public class MergeSortUtil {
 					A[i] = L[li];
 					li++;
 				}
-				printArray(A);
 				return;
 			}
 		}
-		printArray(A);
-
 	}
 	
 }
