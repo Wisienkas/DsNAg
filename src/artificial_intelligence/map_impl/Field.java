@@ -7,6 +7,7 @@ public class Field implements IPosition {
 	private int x;
 	private int y;
 	private int cost;
+	private boolean inOptimal;
 	
 	public Field(int x, int y, int cost){
 		this.x = x;
@@ -14,6 +15,7 @@ public class Field implements IPosition {
 		this.cost = cost;
 	}
 	
+	@Override
 	public int getCost(){
 		return this.cost;
 	}
@@ -27,5 +29,13 @@ public class Field implements IPosition {
 	public int getY() {
 		return y;
 	}
-
+	
+	public boolean inOptimal(){
+		return this.inOptimal;
+	}
+	
+	@Override
+	public void setInOptimal(){
+		this.inOptimal = true;
+	}
 }

@@ -10,13 +10,13 @@ public class Map implements IMap {
 	
 	public static void main(String[] args) {
 		Map m = new Map();
-		m.generateMap(10, 10);
-		AStar as = new AStar(m.getPosition(0, 0), m.getPosition(7, 8), m);
+		m.generateMap(20, 20);
+		AStar as = new AStar(m.getPosition(0, 0), m.getPosition(17, 18), m);
 	}
 	
 	private Field[][] map;
 	
-	private final int costVary = 5;
+	private final int costVary = 50;
 	
 	public Map(){
 	}
@@ -32,8 +32,45 @@ public class Map implements IMap {
 				this.map[i][j] = new Field(i, j, rnd.nextInt(this.costVary - 1) + 1);
 			}
 		}
+		
+		printMap();
 	}
 	
+	private void printMap() {
+		String[] lines = new String[this.map.length];
+		
+		// Assemble lines
+		for (int i = 0; i < this.map.length; i++) {
+			String line = "Line{" + getString(i , this.map.length) + "}{";
+			for (int j = 0; j < this.map[i].length; j++) {
+				line += "[" + getString(map[i][j].getCost(), this.map[i].length) + "]";
+			}
+			line += "}";
+			lines[i] = line;
+		}
+		
+		// print lines
+		for (String line : lines) {
+			System.out.println(line);
+		}
+		
+	}
+
+	private String getString(int j, int length) {
+		
+		String input = "" + j;
+		String maxLength = "" + (length - 1);
+		
+		if(input.length() == maxLength.length()){
+			return input;
+		}
+		String result = "";
+		for (int i = 0; i < maxLength.length() - input.length(); i++) {
+			result += " ";
+		}
+		return result + input;
+	}
+
 	@Override
 	public int getCost(IPosition position) {
 		

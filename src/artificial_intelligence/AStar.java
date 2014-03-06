@@ -48,7 +48,7 @@ public class AStar {
 			tries++;
 			Node current = this.openset.poll();
 			if(getDistance(current.getPosition(), goal) == 0){
-				System.out.println("Found Solution in: " + tries + "Tries!");
+				System.out.println("Found Solution in: " + tries + " Tries!");
 				return reconstruct_path(current);
 			}
 			this.closedset.put(current.getPosition(), current);
@@ -57,7 +57,7 @@ public class AStar {
 				if(neighbor == null || this.closedset.containsKey(neighbor)){
 					continue;
 				}
-				int temp_g_score = current.getGScore() + getDistance(current.getPosition(), neighbor);
+				int temp_g_score = current.getGScore() + neighbor.getCost();
 				
 				if(!openset_check.containsKey(neighbor) || betterSolution(temp_g_score, neighbor)){
 					Node from = current;
