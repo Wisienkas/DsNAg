@@ -10,8 +10,8 @@ public class Map implements IMap {
 	
 	public static void main(String[] args) {
 		Map m = new Map();
-		m.generateMap(20, 20);
-		AStar as = new AStar(m.getPosition(0, 0), m.getPosition(17, 18), m);
+		m.generateMap(20, 200);
+		AStar as = new AStar(m.getPosition(10, 186), m.getPosition(10, 0), m);
 	}
 	
 	private Field[][] map;

@@ -11,11 +11,13 @@ public class AStar {
 	private Map<IPosition, Node> openset_check;
 	private IMap map; // map of navigated nodes
 	
-	private int heuristicFactor = 1;
+	private int heuristicFactor = 2;
 	
 	private IPosition goal;
 	private int g_score; // cost from start along best known path
 	private int f_score; // estimated cost from start to goal
+	
+	private int optimalLength;
 	
 	public AStar(IPosition start, IPosition goal, IMap map){
 		
@@ -23,6 +25,8 @@ public class AStar {
 			System.out.println("Null goal or start for A*... \nSystem Closing...");
 			System.exit(1);
 		}
+		
+		this.optimalLength = 0;
 		
 		this.map = map;
 		this.goal = goal;
@@ -38,6 +42,7 @@ public class AStar {
 		this.closedset = new HashMap<>();
 		
 		Process();
+		System.out.println("Found shortest way to be: " + this.optimalLength + " steps long!");
 	}
 
 	private Node Process() {
@@ -102,6 +107,8 @@ public class AStar {
 	}
 
 	private Node reconstruct_path(Node current) {
+		this.optimalLength++;
+		
 		if(current.parent != null){
 			reconstruct_path(current.parent);
 		}
