@@ -1,10 +1,11 @@
-package artificial_intelligence.map_impl;
+package artificial_intelligence.informed.map_impl;
 
 import java.util.Random;
 
-import artificial_intelligence.AStar;
-import artificial_intelligence.IMap;
-import artificial_intelligence.IPosition;
+import artificial_intelligence.informed.AStar;
+import artificial_intelligence.informed.IMap;
+import artificial_intelligence.informed.IPosition;
+
 
 public class Map implements IMap {
 	

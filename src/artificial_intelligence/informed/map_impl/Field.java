@@ -1,6 +1,7 @@
-package artificial_intelligence.map_impl;
+package artificial_intelligence.informed.map_impl;
 
-import artificial_intelligence.IPosition;
+import artificial_intelligence.informed.IPosition;
+
 
 public class Field implements IPosition {
 

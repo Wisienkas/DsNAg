@@ -1,4 +1,4 @@
-package artificial_intelligence;
+package artificial_intelligence.informed;
 
 public interface IMap {
 	
