@@ -11,7 +11,7 @@ public class AStar {
 	private Map<IPosition, Node> openset_check;
 	private IMap map; // map of navigated nodes
 	
-	private int heuristicFactor = 2;
+	private int heuristicFactor = 1;
 	
 	private IPosition goal;
 	private int g_score; // cost from start along best known path
@@ -125,5 +125,4 @@ public class AStar {
 	private int getDistance(IPosition p1, IPosition p2){
 		return Math.abs(p1.getX() - p2.getX()) + Math.abs(p1.getY() - p2.getY());
 	}
-	
 }
