@@ -8,7 +8,15 @@ public class ArrayUtils {
 			s += A[i];
 			s += (i + 1 != A.length) ? ", " : "}";
 		}
-		
 		System.out.println(s);
+	}
+	
+	public static boolean verifyArraySorted(int[] A){
+		for (int i = 1; i < A.length; i++) {
+			if(A[i - 1] > A[i]){
+				return false;
+			}
+		}
+		return true;
 	}
 }

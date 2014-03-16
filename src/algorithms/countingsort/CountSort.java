@@ -4,25 +4,12 @@ import algorithms.ArrayUtils;
 
 public class CountSort {
 	
-	public static void main(String[] args) {
-		int[] A = new int[]{1, 6, 3, 2, 9, 4, 3, 3, 5, 1, 1};
-		int[] B = new int[]{1};
-		try {
-			ArrayUtils.printIntArray(A);
-			B = CountSort.Sort(A, 0, A.length, 9);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		ArrayUtils.printIntArray(B);
-	}
-	
 	public static int[] Sort(int[] A, int start, int end, int maxValue) throws Exception{
 		return Sort(A, start, end, maxValue, false);
 	}
 	
 	public static int[] Sort(int[] A, int start, int end, int maxValue, boolean documentation) throws Exception{
 		int[] B = new int[end - start];
-		System.out.println(end - start);
 		int[] C = new int[maxValue + 1];
 		
 		if(documentation){
