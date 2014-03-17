@@ -17,7 +17,7 @@ public class Map implements IMap {
 	
 	private Field[][] map;
 	
-	private final int costVary = 50;
+	private final int costVary = 2;
 	
 	public Map(){
 	}
@@ -30,7 +30,7 @@ public class Map implements IMap {
 		this.map = new Field[height][width];
 		for(int i = 0; i < height; i++){
 			for(int j = 0; j < width; j++){
-				this.map[i][j] = new Field(i, j, rnd.nextInt(this.costVary - 1) + 1);
+				this.map[i][j] = new Field(i, j, rnd.nextInt(this.costVary > 0 ? this.costVary : 1) + 1);
 			}
 		}
 		
