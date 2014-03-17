@@ -23,10 +23,13 @@ public class Genetic {
 			
 		}
 		
-		
+		return null;
 	}
 
 	private Individual randomSelection(Set<Individual> population) {
+		
+		
+		
 		Random rnd = new Random();
 		int[] chances = new int[population.size()];
 		Individual[] indies = new Individual[population.size()];

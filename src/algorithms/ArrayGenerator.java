@@ -22,6 +22,17 @@ public class ArrayGenerator {
 		return result;
 	}
 	
+	public static int[] makeRandomArrayPrimi(int size, int lowest, int highest) throws Exception{
+		if(size < 0 || lowest > highest || lowest < 0 || highest < 0){
+			throw new Exception("Negative params or lowest higher than highest");
+		}
+		int[] result = new int[size];
+		for (int i = 0; i < result.length; i++) {
+			result[i] = (int) ((Math.random() * (highest - lowest)) + lowest);
+		}
+		return result;
+	}
+	
 	/**
 	 * Will make a sorted array of n size based on countUp for either 0,1,2,3,,,,n or n,n-1,n-2,,,,,,3,2,1
 	 * @param size size of the array
