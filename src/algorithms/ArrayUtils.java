@@ -1,5 +1,7 @@
 package algorithms;
 
+import java.util.List;
+
 public class ArrayUtils {
 	
 	public static void printIntArray(int[] A){
@@ -11,7 +13,25 @@ public class ArrayUtils {
 		System.out.println(s);
 	}
 	
+	public static boolean verifyArraySorted(List<Float> A){
+		for (int i = 1; i < A.size(); i++) {
+			if(A.get(i - 1) > A.get(i)){
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public static boolean verifyArraySorted(int[] A){
+		for (int i = 1; i < A.length; i++) {
+			if(A[i - 1] > A[i]){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static boolean verifyArraySorted(float[] A){
 		for (int i = 1; i < A.length; i++) {
 			if(A[i - 1] > A[i]){
 				return false;

@@ -11,13 +11,13 @@ public class Map implements IMap {
 	
 	public static void main(String[] args) {
 		Map m = new Map();
-		m.generateMap(20, 200);
+		m.generateMap(200, 200);
 		AStar as = new AStar(m.getPosition(10, 186), m.getPosition(10, 0), m);
 	}
 	
 	private Field[][] map;
 	
-	private final int costVary = 2;
+	private final int costVary = 100;
 	
 	public Map(){
 	}

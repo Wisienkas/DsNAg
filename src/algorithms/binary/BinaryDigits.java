@@ -5,7 +5,7 @@ import algorithms.ArrayUtils;
 public class BinaryDigits {
 	
 	public static void main(String[] args) {
-		System.out.println(binaryDigits(55));
+		System.out.println(binaryDigits(54));
 	}
 	
 	public static String binaryDigits(long n){
