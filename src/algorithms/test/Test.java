@@ -1,24 +1,29 @@
 package algorithms.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import algorithms.ArrayGenerator;
 import algorithms.ArrayUtils;
 import algorithms.countingsort.CountSort;
 import algorithms.mergesort.Mergesort;
 import algorithms.quicksort.QuickSort;
+import algorithms.subSort.SubSort;
 
 public class Test {
 
 	public static void main(String[] args) {
-		int size = 1000000;
+		int size = 100000;
 		int k = size * 20;
 		int runs = 5;
-		int sorts = 4;
+		int sorts = 5;
 		int active;
 		String[] names = new String[]{
 				"Quicksort - Sort 1",
 				"Quicksort - Sort 2",
 				"Countsort - Sort  ",
-				"Mergesort - Sort  "};
+				"Mergesort - Sort  ",
+				"SubSort   - Sort"};
 		long[] times = new long[sorts];
 		boolean[][] passed = new boolean[sorts][runs];
 		for (int i = 0; i < runs; i++) {
@@ -28,6 +33,7 @@ public class Test {
 				int[] B = ArrayGenerator.makeRandomArrayPrimi(size, 0, k);
 				int[] C = ArrayGenerator.makeRandomArrayPrimi(size, 0, k);
 				int[] D = ArrayGenerator.makeRandomArrayPrimi(size, 0, k);
+				int[] E = ArrayGenerator.makeRandomArrayPrimi(size, 0, k);
 				
 				
 				active = 0;
@@ -69,7 +75,20 @@ public class Test {
 				passed[active][i] = ArrayUtils.verifyArraySorted(D);
 				System.out.println(time + "ms");
 				
-				
+				active = 4;
+				System.out.print("| " + names[active] + " |\t  Time: ");
+				float[] E_float = new float[E.length];
+				for (int j = 0; j < E.length; j++) {
+					E_float[j] = (float) (E[i] + Math.random());
+				}
+				time = System.nanoTime();
+				SubSort.sort(E_float);
+				time = (System.nanoTime() - time) / 1000000;
+				times[active] += time;
+				System.out.println(ArrayUtils.verifyArraySorted(E_float));
+				passed[active][i] = ArrayUtils.verifyArraySorted(E_float);
+				E_float = null;
+				System.out.println(time + "ms");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
