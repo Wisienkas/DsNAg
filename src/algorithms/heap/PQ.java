@@ -1,8 +1,8 @@
 package algorithms.heap;
 
-import datastructure.DataNode;
 
-public interface PQ {
-	TreeNode extractMin();
-	void Insert(TreeNode node);
+public interface PQ<T> {
+	Element<T> extractMin();
+	void Insert(Element<T> e);
+	void printArray();
 }
